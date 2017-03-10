@@ -48,8 +48,8 @@ for i in range(0,100):
     all_points.append(pt)
 
 
-"""#making a function to delete objects, but I guess it'd be easier to just do the built in rs.DeleteObject
-def delete_object(a,b,c,d,e):
+#making a function to delete objects, but I guess it'd be easier to just do the built in rs.DeleteObject
+"""def delete_object(a,b,c,d,e):
     rs.DeleteObjects(object)
     return object
 delete_object(pipe_points, all_points, pipe, point1, point2)
