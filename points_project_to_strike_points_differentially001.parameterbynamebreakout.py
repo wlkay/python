@@ -29,6 +29,7 @@ def randZ(z_range):
     return z
 
 #setting range for random numbers defined above
+
 xnum = randX(10)
 ynum = randY(10)
 znum = randZ(10)
@@ -40,15 +41,6 @@ for pt in og_source_pts:
     ptCoord = rs.PointCoordinates(pt)
     source_pts.append(ptCoord)
 
-
-def obj_layer(layer_name):
-    '''trying to be able to call obj_layer on clos_pt with a particular
-    layer name to give the corresponding cloud points a different parameter
-    to move by
-    '''
-    layer = rs.ObjectsByLayer(layer_name)
-    return layer
-
 #initializing cloud of points, vectorize between cloud and original points, move pt by sub_vect amount\
 #draw line between pt and original points
 for i in range(0,5):
@@ -56,7 +48,13 @@ for i in range(0,5):
 
     #find closest points from cloud to source points
     index = rs.PointArrayClosestPoint(source_pts, pt)
+
     clos_pt = source_pts[index]
+
+    #rs.LayerId("Denver")
+    
+    denver = rs.ObjectLayer("f753777e-e8b5-4641-a968-8a6da86d3d74")
+    print denver
 
     """
     #find layer of each point, put in
@@ -136,14 +134,5 @@ print index
 rs.MoveObject(index, (0,0,10))
 
 
-for pt in og_source_pts:
-    if rs.ObjectsByLayer("Denver"):
-        sphere_that_line = rs.AddSphere(new_pt,rs.VectorLength(sub_vect))
-        rs.SelectObject(sphere_that_line)
-    else:
-        pass
 
-    #print vect
-    #print "BREAK"
-    #print unit_vect
 """
