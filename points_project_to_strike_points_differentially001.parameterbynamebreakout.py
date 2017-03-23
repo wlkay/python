@@ -5,6 +5,7 @@ pi = 3.14159
 
 cloud_pts = []
 source_pts = []
+line_set1 = []
 
 def place_pts(x_range, y_range, z_range):
     x = random.uniform(-25, x_range)
@@ -103,8 +104,8 @@ for i in range(0,5):
     #run through clos_pt, if it's layer is x, then move cloud pts that are close to it into x layer,
     #then get those close pts by layer, and apply parameter to the boxes that grow off them.
 
-    string_l = rs.ObjectLayer(index)
-    print string_l
+    #string_l = rs.ObjectLayer(index)
+    #print string_l
     div_num = 3
     vector_length = rs.VectorLength(sub_vect)/div_num
 

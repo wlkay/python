@@ -5,6 +5,7 @@ pi = 3.14159
 
 cloud_pts = []
 source_pts = []
+line_set1 = []
 
 def place_pts(x_range, y_range, z_range):
     x = random.uniform(-25, x_range)
