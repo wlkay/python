@@ -100,9 +100,7 @@ for i in range(0,5):
 
 
     #set parameter for spheres and boxes
-    #run through clos_pt, if it's layer is x, then move cloud pts that are close to it into x layer,
-    #then get those close pts by layer, and apply parameter to the boxes that grow off them.
-
+    #run through clos_pt, if it's x
     string_l = rs.ObjectLayer(index)
     print string_l
     div_num = 3
