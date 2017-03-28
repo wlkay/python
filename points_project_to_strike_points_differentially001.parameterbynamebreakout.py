@@ -35,15 +35,17 @@ ynum = randY(10)
 znum = randZ(10)
 """
 
-#og_source_pts = rs.ObjectsByLayer("Source Points", True)
-og_source_pts = rs.GetObjects("Select Source Points", rs.filter.point)
+#below automatically selects points for script based on layer
+og_source_pts = rs.ObjectsByLayer("Source Points", True)
+#below manual selection of points for script
+#og_source_pts = rs.GetObjects("Select Source Points", rs.filter.point)
 for pt in og_source_pts:
     ptCoord = rs.PointCoordinates(pt)
     source_pts.append(ptCoord)
 
 #initializing cloud of points, vectorize between cloud and original points, move pt by sub_vect amount\
 #draw line between pt and original points
-for i in range(0,5):
+for i in range(0,5000):
     pt = rs.AddPoint(place_pts(25,.25,.25))
 
     #find closest points from cloud to source points
@@ -52,7 +54,7 @@ for i in range(0,5):
     clos_pt = source_pts[index]
 
     #rs.LayerId("Denver")
-    
+
     denver = rs.ObjectLayer("f753777e-e8b5-4641-a968-8a6da86d3d74")
     print denver
 
@@ -73,25 +75,16 @@ for i in range(0,5):
     unit_vect = rs.VectorUnitize(vect)
 
 
-    """
-    name = rs.ObjectName(source_pts)
-    if name == "Denver":
-        print "gotchya1"
-    for pt in source_pts:
-        rs.ObjectName()
-        name = rs.ObjectName(pt)
-        if name == "Denver":
-            print "gotchya2"
-        #if rs.ObjectName(pt) == rs.ObjectsByName(layer_name):
-            #print "gotchya"
-    """
-
-
+    #this makes the objects fall along a sphere
+    #sub_vect = (vect)-(unit_vect)
+    #this makes the objects fall along a straight line
     sub_vect = (vect)/3
 
     #draw line between origin (og_) pts and cloud of random pts
     init_dst  = rs.AddLine(pt, clos_pt)
     line_set1.append(init_dst)
+    #pipes the lines
+    #rs.AddPipe(init_dst, 0, .01, 0)
     #move cloud of random pts according to outcome of sub_vect
     new_pt = rs.MoveObject(pt,sub_vect)
     new_pt_coord = rs.PointCoordinates(new_pt)
