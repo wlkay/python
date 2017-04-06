@@ -36,16 +36,16 @@ znum = randZ(10)
 """
 
 #below automatically selects points for script based on layer
-og_source_pts = rs.ObjectsByLayer("Source Points", True)
+#og_source_pts = rs.ObjectsByLayer("Source Points", True)
 #below manual selection of points for script
-#og_source_pts = rs.GetObjects("Select Source Points", rs.filter.point)
+og_source_pts = rs.GetObjects("Select Source Points", rs.filter.point)
 for pt in og_source_pts:
     ptCoord = rs.PointCoordinates(pt)
     source_pts.append(ptCoord)
 
 #initializing cloud of points, vectorize between cloud and original points, move pt by sub_vect amount\
 #draw line between pt and original points
-for i in range(0,5000):
+for i in range(0,500):
     pt = rs.AddPoint(place_pts(25,.25,.25))
 
     #find closest points from cloud to source points
@@ -97,15 +97,15 @@ for i in range(0,5000):
 
     #string_l = rs.ObjectLayer(index)
     #print string_l
-    div_num = 3
+    div_num = 5
     vector_length = rs.VectorLength(sub_vect)/div_num
 
     #adding spheres to the new lines
-    #rs.AddSphere(new_pt,vector_length)
+    rs.AddSphere(new_pt,vector_length)
 
     #adding boxes to the new lines
 
-    rs.AddBox(\
+    '''rs.AddBox(\
     [(new_pt_coord),\
     (new_pt_coord[0]+vector_length,new_pt_coord[1],new_pt_coord[2]),\
     (new_pt_coord[0]+vector_length,new_pt_coord[1]+vector_length,new_pt_coord[2]),\
@@ -114,7 +114,7 @@ for i in range(0,5000):
     (new_pt_coord[0]+vector_length,new_pt_coord[1],new_pt_coord[2]+vector_length),\
     (new_pt_coord[0]+vector_length,new_pt_coord[1]+vector_length,new_pt_coord[2]+vector_length),\
     (new_pt_coord[0],new_pt_coord[1]+vector_length,new_pt_coord[2]+vector_length)])
-
+    '''
 
 """
 def PassPtName(pt_name):
